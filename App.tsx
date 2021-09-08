@@ -13,7 +13,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <ImageBackground style={styles.container} source={require('./assets/cat.jpg')}>
         <StatusBar style="auto" />
-        <Text style={[styles.text]}>os: {Platform.OS}</Text>
+        <Text style={[styles.text, styles.roboto]}>os: {Platform.OS}</Text>
         <Text style={[styles.text]}>height: {height}</Text>
         <Text style={[styles.text]}>width: {width}</Text>
         {/* <View style={[styles.box]}></View>
@@ -27,7 +27,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.blue500,
+    backgroundColor: Colors.white,
     padding: 10,
   },
   text: {
@@ -43,5 +43,14 @@ const styles = StyleSheet.create({
   border: {
     borderWidth: 10,
     borderColor: color('black').alpha(0.3).toString(),
+  },
+  roboto: {
+    fontFamily: 'Roboto-Black',
+    fontSize: 30,
+    fontWeight: Platform.select({
+      ios: '700',
+      android: '600',
+      web: '700'
+    })
   }
 });
