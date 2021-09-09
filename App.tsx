@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
-import { TopBar, BottomBar, Content, Fab } from './src/screens';
+import { TopBar, BottomBar, Content, Fab, Cat, Clock } from './src/screens';
 import { Colors } from 'react-native-paper';
 
 
@@ -8,12 +8,14 @@ export default function App() {
 
   return (
     <>
-      <SafeAreaView style={styles.container}>
+      <Cat/>
+      <Clock/>
+      {/* <SafeAreaView style={styles.container}>
         <TopBar/>
         <Content/>
         <BottomBar/>
       </SafeAreaView>
-      <Fab/>
+      <Fab/> */}
     </>
   );
 }

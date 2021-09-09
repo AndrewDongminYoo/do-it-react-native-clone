@@ -1,40 +1,32 @@
+import color from 'color';
 import React from 'react';
-import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList, ScrollView } from 'react-native';
+import { Colors } from 'react-native-paper';
+import Person from '../copy/Person';
 import * as D from '../data'
 
-const title = 'Context';
 
-const avatars = D.makeArray(200).map((x) => D.randomAvatarUrl());
+const people: D.IPerson[] = D.makeArray(10).map(D.createRandomPerson)
 
 const Content = () => {
   return (
-    <ScrollView contentContainerStyle={[styles.view]}>
-      {avatars.map((avatarUrl, index) => (
-        <View key={index.toString()} style={styles.avatarView}>
-          <Image style={styles.avatar} source={{uri: avatarUrl}} />
-        </View>
-      ))}
+    <ScrollView contentContainerStyle={[styles.flex]}>
+      <FlatList data={people}
+        renderItem={({item}) => <Person person={item}/>}
+        keyExtractor={(person) => person.id}
+        ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
+      />
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  view: {
-    padding: 5,
-    // flex: 1,
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    flexDirection: 'row',
-    overflow: 'hidden'
+  flex: {
+    flex: 1
   },
-  avatarView: {
-    padding: 3
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25
+  itemSeparator: {
+    borderWidth: 1,
+    borderEndColor: color(Colors.grey500).lighten(0.3).toString()
   }
 })
 

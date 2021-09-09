@@ -7,18 +7,17 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as D from '../data';
 import moment from 'moment';
 import 'moment/locale/ko';
-import { Avatar, IconText } from '../elements';
+import { Avatar, IconText } from '../components'
 
 export type PersonProps = {
   person: D.IPerson
 }
 
-
 const Person: FC<PersonProps> = ({person}) => {
 
-  const avatarPressed = () => console.log('avatar pressed')
-const deletePressed = () => console.log('delete pressed')
-const countIconPressed = (name: string) => () => console.log(`${name} pressed`)
+  const avatarPressed = () => Alert.alert('avatar pressed')
+  const deletePressed = () => Alert.alert('delete pressed')
+  const countIconPressed = (name: string) => () => Alert.alert(`${name} pressed`)
 
   return (
     <View style={[styles.view]}>
@@ -34,12 +33,12 @@ const countIconPressed = (name: string) => () => console.log(`${name} pressed`)
           </Text>
           <Icon size={20} name="trash-can-outline" color={Colors.lightBlue500} onPress={deletePressed}/>
         </View>
-        <Text numberOfLines={3} ellipsizeMode="tail" style={[styles.text, styles.comments]}>{person.comments}</Text>
+        <Text numberOfLines={3} style={[styles.text, styles.comments]}>{person.comments}</Text>
         <Image style={[styles.image]} source={{uri: person.image}}/>
         <View style={[styles.countsView]}>
-            <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('comment')} textStyle={[styles.iconText]} name="comment" text={person.counts.comment}/>
+            <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('comment')} textStyle={[styles.iconText]} name="comment"         text={person.counts.comment}/>
             <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('retweet')} textStyle={[styles.iconText]} name="twitter-retweet" text={person.counts.retweet}/>
-            <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('heart')} textStyle={[styles.iconText]} name="heart" text={person.counts.heart}/>
+            <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('heart')}   textStyle={[styles.iconText]} name="heart"           text={person.counts.heart}/>
         </View>
       </View>
     </View>

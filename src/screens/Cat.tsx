@@ -4,12 +4,14 @@ import { ImageBackground, StyleSheet, Text, SafeAreaView, Platform, Dimensions }
 import { Colors } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import color from 'color';
+import useAssetFonts from '../hooks/useAssetFonts';
 
 
-export default function App() {
+export default function Cat() {
 
   const { height, width } = Dimensions.get('window');
   const _onClick = () => console.log("Hello")
+  const fonts = useAssetFonts();
 
   return (
     <SafeAreaView style={styles.container}>
