@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
 import color from 'color';
-import PersonUsingObjectState from './PersonUsingObjectState';
+import PersonUsingObjectState from '../screens/PersonUsingObjectState';
 import * as D from '../data'
 
 const title = 'Memo';

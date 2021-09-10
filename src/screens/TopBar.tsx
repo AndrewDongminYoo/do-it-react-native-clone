@@ -1,41 +1,41 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import React, { useCallback } from 'react';
+import type { FC, Dispatch, SetStateAction } from 'react'
+import { StyleSheet, View, Text } from 'react-native';
 import { Colors } from 'react-native-paper';
 import * as D from '../data';
 
-const name = D.randomName();
-const avatarUrl = D.randomAvatarUrl(name);
+export type TopBarProps = {
+  setPeople: Dispatch<SetStateAction<D.IPerson[]>>
+}
 
-const TopBar = () => {
+const TopBar: FC<TopBarProps> = ({ setPeople }) => {
+
+  const create = useCallback(()=>
+    setPeople((prevPeople: D.IPerson[]) =>
+      [D.createRandomPerson(), ...prevPeople])
+  , [])
+  const remove = useCallback(()=>
+    setPeople((prevPeople: D.IPerson[]) => [])
+  , [])
+
   return (
-    <View style={[styles.view]}>
-      <Image style={[styles.avatar]} source={{uri: avatarUrl}}/>
-      <View style={[styles.centerView]}>
-        <Text style={[styles.text]}>{name}</Text>
-      </View>
+    <View style={[styles.topBar]}>
+      <Text style={[styles.textButton]} onPress={create}>create</Text>
+      <Text style={[styles.textButton]} onPress={remove}>remove</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  view: {
+  topBar: {
     padding: 5,
-    backgroundColor: Colors.amber900,
+    backgroundColor: Colors.lightBlue700,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-between'
   },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20
-  },
-  centerView: {
-    flex: 1
-  },
-  text: {
+  textButton: {
     fontSize: 20,
-    textAlign: 'center'
+    color: Colors.white
   }
 })
 

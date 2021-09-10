@@ -1,10 +1,10 @@
 import React from 'react';
 import type { FC } from 'react';
-import { Fragment, useMemo } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView, FlatList, View, Text } from 'react-native';
 import { TopBar, BottomBar, Content, Fab } from './src/screens';
 import { Cat, Clock } from './src/screens';
-import { Cache, Fibo, Memo } from './src/screens';
+import { Cache, Fibo, Memo } from './src/prac';
 import { Colors } from 'react-native-paper';
 import color from 'color';
 import { PersonUsingObjectState, PersonUsingValueState, PersonUsingPassingState } from './src/screens';
@@ -25,7 +25,7 @@ const numberOfComponents = personInformations.length
 
 export default function App() {
 
-  const people = useMemo(()=>D.makeArray(10).map(D.createRandomPerson),[])
+  const [people, setPeople] = useState<D.IPerson[]>([])
 
   const children = useMemo(()=>
     personInformations.map(({title, Component}: PersonInformation)=>(
@@ -40,11 +40,12 @@ export default function App() {
           ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
         />
       </View>
-  )), [])
+  )), [people.length])
 
   return (
     <>
       <SafeAreaView style={[styles.safeAreaView]}>
+        <TopBar setPeople={setPeople}/>
         <ScrollView horizontal
           contentContainerStyle={[styles.contentContainerStyle]}
         >
@@ -56,7 +57,7 @@ export default function App() {
       {/* <Cat/>
       <Clock/> */}
       {/* <SafeAreaView style={styles.container}>
-        {/* <TopBar/> */}
+
         {/* <Content/> */}
         {/* <BottomBar/> */}
       {/* </SafeAreaView> */}
