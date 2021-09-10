@@ -1,8 +1,9 @@
 import React from 'react';
 import type { FC } from 'react';
-import { Image } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
+import { Colors } from 'react-native-paper';
 import type { StyleProp, ImageStyle } from 'react-native';
-import { TouchableView } from './TouchableView';
+import TouchableView from './TouchableView';
 import type { TouchableViewProps} from './TouchableView'
 
 export type AvatarProps = TouchableViewProps & {
@@ -11,7 +12,10 @@ export type AvatarProps = TouchableViewProps & {
   imageStyle: StyleProp<ImageStyle>
 }
 
-export const Avatar: FC<AvatarProps> = ({uri, size, imageStyle, ...touchableViewProps})=>{
+const Avatar: FC<AvatarProps> = (props)=>{
+
+  const {uri, size, imageStyle, ...touchableViewProps} = props;
+
   return (
     <TouchableView {...touchableViewProps}>
       <Image source={{uri}}
@@ -23,3 +27,5 @@ export const Avatar: FC<AvatarProps> = ({uri, size, imageStyle, ...touchableView
     </TouchableView>
   )
 }
+
+export default Avatar;

@@ -9,10 +9,12 @@ export type TouchableViewProps = TouchableOpacityProps & {
   viewStyle?: StyleProp<ViewStyle>
 }
 
-export const TouchableView: FC<TouchableViewProps> = ({children, viewStyle, ...touchableProps}) => {
+const TouchableView: FC<TouchableViewProps> = ({children, viewStyle, ...touchableProps}) => {
   return (
     <TouchableOpacity {...touchableProps}>
       <View style={[viewStyle]}>{children}</View>
     </TouchableOpacity>
   )
 }
+
+export default TouchableView;
