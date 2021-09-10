@@ -5,11 +5,13 @@ import { Colors } from 'react-native-paper';
 import color from 'color';
 import Person from './Person';
 import * as D from '../data'
+import useClock from '../hooks/useClock'
 
 const title = 'Memo';
 
 const Memo = () => {
 
+  const time = useClock();
   const people = useMemo(()=> {
     return D.makeArray(2).map(D.createRandomPerson)
   }, [])

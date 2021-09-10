@@ -12,12 +12,12 @@ export type IconTextProps = TouchableViewProps &
     textStyle: StyleProp<TextStyle>
   }
 
-  export const IconText: FC<IconTextProps> = ({
-    name, size, color, textStyle, text, ...touchableViewProps}) => {
-    return (
-      <TouchableView {...touchableViewProps}>
-        <Icon name={name} size={size} color={color} />
-        <Text style={textStyle}>{text}</Text>
-      </TouchableView>
-    )
-  }
+export const IconText: FC<IconTextProps> = ({
+  name, size, color, textStyle, text, ...touchableViewProps}) => {
+  return (
+    <TouchableView {...touchableViewProps}>
+      <Icon name={name} size={size} color={color} />
+      <Text style={textStyle}>{text}</Text>
+    </TouchableView>
+  )
+}
