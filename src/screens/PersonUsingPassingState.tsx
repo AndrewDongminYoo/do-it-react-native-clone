@@ -9,15 +9,12 @@ import * as D from '../data';
 import moment from 'moment';
 import 'moment/locale/ko';
 import { Avatar, IconText } from '../components'
-import useAssetFonts from '../hooks/useAssetFonts';
 
 export type PersonProps = {
   person: D.IPerson
 }
 
 const Person: FC<PersonProps> = ({person}) => {
-
-  const fonts = useAssetFonts()
 
   const avatarPressed = useCallback(() => {
     Alert.alert('avatar pressed')

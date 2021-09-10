@@ -3,23 +3,16 @@ import { useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
 import color from 'color';
-import Person from './Person';
+import PersonUsingObjectState from './PersonUsingObjectState';
 import * as D from '../data'
-import useClock from '../hooks/useClock'
 
 const title = 'Memo';
 
 const Memo = () => {
 
-  const time = useClock();
   const people = useMemo(()=> {
-    return D.makeArray(2).map(D.createRandomPerson)
+    return D.makeArray(4).map(D.createRandomPerson)
   }, [])
-
-  const people1 = D.makeArray(2).map(D.createRandomPerson)
-
-  console.log(people)
-  console.log(people1)
 
   return (
     <View style={[styles.view]}>
@@ -28,7 +21,7 @@ const Memo = () => {
       </Text>
       <FlatList data={people}
         style={[styles.flatList]}
-        renderItem={({item}) => <Person person={item}/>}
+        renderItem={({item}) => <PersonUsingObjectState person={item}/>}
         keyExtractor={(person) => person.id}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
       />

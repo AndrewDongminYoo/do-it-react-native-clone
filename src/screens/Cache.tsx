@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
 import color from 'color';
 import * as D from '../data'
-import Person from './Person';
+import PersonUsingObjectState from './PersonUsingObjectState';
 import { createOrUse } from './createOrUse';
 
 const title = 'Cache';
@@ -11,7 +11,7 @@ const title = 'Cache';
 const Cache = () => {
 
   const people = createOrUse('people', ()=> {
-    return D.makeArray(2).map(D.createRandomPerson)
+    return D.makeArray(4).map(D.createRandomPerson)
   })
 
   return (
@@ -21,7 +21,7 @@ const Cache = () => {
       </Text>
       <FlatList data={people}
         style={[styles.flatList]}
-        renderItem={({item}) => <Person person={item}/>}
+        renderItem={({item}) => <PersonUsingObjectState person={item}/>}
         keyExtractor={(person) => person.id}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
       />

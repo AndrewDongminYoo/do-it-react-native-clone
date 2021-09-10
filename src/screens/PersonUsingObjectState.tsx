@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback, useState } from 'react';
 import type { FC } from 'react';
 import { Alert, View, Text, Image } from 'react-native';
 import { Colors } from 'react-native-paper';
@@ -13,11 +14,17 @@ export type PersonProps = {
   person: D.IPerson
 }
 
-const Person: FC<PersonProps> = ({person}) => {
+const Person: FC<PersonProps> = ({person: initialPerson}) => {
 
-  const avatarPressed = () => Alert.alert('avatar pressed')
-  const deletePressed = () => Alert.alert('delete pressed')
-  const countIconPressed = (name: string) => () => Alert.alert(`${name} pressed`)
+  const [person, setPerson] = useState(initialPerson)
+
+  const avatarPressed = useCallback(() =>
+    Alert.alert('avatar pressed'),[])
+  const deletePressed = useCallback(() =>
+    Alert.alert('delete pressed'),[])
+  const countIconPressed = useCallback(
+    (name: string) => () =>
+      Alert.alert(`${name} pressed`),[])
 
   return (
     <View style={[styles.view]}>
