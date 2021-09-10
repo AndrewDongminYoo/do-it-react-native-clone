@@ -16,15 +16,41 @@ export type PersonProps = {
 
 const Person: FC<PersonProps> = ({person: initialPerson}) => {
 
-  const [person, setPerson] = useState(initialPerson)
+  const [person, setPerson] = useState<D.IPerson>(initialPerson)
 
   const avatarPressed = useCallback(() =>
-    Alert.alert('avatar pressed'),[])
+    Alert.alert('avatar pressed'), [])
   const deletePressed = useCallback(() =>
-    Alert.alert('delete pressed'),[])
+    Alert.alert('delete pressed'), [])
   const countIconPressed = useCallback(
-    (name: string) => () =>
-      Alert.alert(`${name} pressed`),[])
+    (name: string) => () => {
+      Alert.alert(`${name} pressed`)
+      if (name === 'comment') {
+        setPerson(person => ({
+          ...person,
+          counts: {
+            ...person.counts,
+            comment: person.counts.comment+1
+          }
+        }))
+      } else if (name === 'retweet') {
+        setPerson(person => ({
+          ...person,
+          counts: {
+            ...person.counts,
+            retweet: person.counts.retweet+1
+          }
+        }))
+      } else {
+        setPerson(person => ({
+          ...person,
+          counts: {
+            ...person.counts,
+            heart: person.counts.heart + 1
+          }
+        }))
+      }
+    },[])
 
   return (
     <View style={[styles.view]}>

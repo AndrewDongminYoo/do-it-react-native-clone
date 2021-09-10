@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   contentContainerStyle: {
-    width: width*numberOfComponents
+    width: width*numberOfComponents,
+    backgroundColor: Colors.grey500
   },
   itemSeparator: {
     borderWidth: 1,

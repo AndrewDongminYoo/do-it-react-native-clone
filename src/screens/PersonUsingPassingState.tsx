@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import type { FC } from 'react';
 import { Alert, View, Text, Image } from 'react-native';
 import { Colors } from 'react-native-paper';
@@ -9,22 +9,20 @@ import * as D from '../data';
 import moment from 'moment';
 import 'moment/locale/ko';
 import { Avatar, IconText } from '../components'
+import PersonIcons from './PersonIcons';
 
 export type PersonProps = {
   person: D.IPerson
 }
 
-const Person: FC<PersonProps> = ({person}) => {
+const Person: FC<PersonProps> = ({person: initialPerson}) => {
 
-  const avatarPressed = useCallback(() => {
-    Alert.alert('avatar pressed')
-    window.alert('avatar')
-  },[])
+  const [person, setPerson] = useState<D.IPerson>(initialPerson)
+
+  const avatarPressed = useCallback(
+    () => Alert.alert('avatar pressed'),[])
   const deletePressed = useCallback(
     () => Alert.alert('delete pressed'),[])
-  const countIconPressed = useCallback(
-    (name: string) => () =>
-      Alert.alert(`${name} pressed`),[])
 
   return (
     <View style={[styles.view]}>
@@ -42,11 +40,7 @@ const Person: FC<PersonProps> = ({person}) => {
         </View>
         <Text numberOfLines={3} style={[styles.text, styles.comments]}>{person.comments}</Text>
         <Image style={[styles.image]} source={{uri: person.image}}/>
-        <View style={[styles.countsView]}>
-            <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('comment')} textStyle={[styles.iconText]} name="comment"         text={person.counts.comment}/>
-            <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('retweet')} textStyle={[styles.iconText]} name="twitter-retweet" text={person.counts.retweet}/>
-            <IconText size={20} viewStyle={[styles.touchableIcon]} onPress={countIconPressed('heart')}   textStyle={[styles.iconText]} name="heart"           text={person.counts.heart}/>
-        </View>
+        <PersonIcons person={person} setPerson={setPerson}/>
       </View>
     </View>
   )
