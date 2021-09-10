@@ -1,15 +1,30 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
+import color from 'color';
+import * as D from '../data'
+import Person from './Person';
+import { createOrUse } from './createOrUse';
 
-const title = 'CopyMe';
+const title = 'Cache';
 
-const CopyMe = () => {
+const Cache = () => {
+
+  const people = createOrUse('people', ()=> {
+    return D.makeArray(2).map(D.createRandomPerson)
+  })
+
   return (
     <View style={[styles.view]}>
       <Text style={[styles.text]}>
         {title}
       </Text>
+      <FlatList data={people}
+        style={[styles.flatList]}
+        renderItem={({item}) => <Person person={item}/>}
+        keyExtractor={(person) => person.id}
+        ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
+      />
     </View>
   )
 }
@@ -23,7 +38,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: Colors.white
+  },
+  flatList:{
+    width: "100%"
+  },
+  itemSeparator: {
+    borderWidth: 1,
+    borderEndColor: color(Colors.grey500).lighten(0.3).toString()
   }
 })
 
-export default CopyMe;
+export default Cache;
