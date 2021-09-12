@@ -1,5 +1,5 @@
 
-import BottomBar from "../element/BottomBar";
+import BottomBar from "./BottomBar";
 import TopBar from "./TopBar";
 import Cat from "./Cat";
 import Fab from "./Fab";

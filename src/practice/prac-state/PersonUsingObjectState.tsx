@@ -5,10 +5,10 @@ import { Alert, View, Text, Image } from 'react-native';
 import { Colors } from 'react-native-paper';
 import { styles } from './Person.style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import * as D from '../data';
+import * as D from '../../data';
 import moment from 'moment';
 import 'moment/locale/ko';
-import { Avatar, IconText } from '../components'
+import { Avatar, IconText } from '../../components'
 
 export type PersonProps = {
   person: D.IPerson

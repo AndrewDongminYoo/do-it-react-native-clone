@@ -11,7 +11,7 @@ import { ToggleThemeProvider } from './src/context/ToggleThemeContext';
 import color from 'color';
 
 import useAssetFonts from './src/hooks/useAssetFonts'
-import MainNavigator from './src/navigator/MainNavigator'
+import MainNavigator from './src/practice/prac-hook/MainNavigator'
 // import { TopBar, BottomBar, Content, Fab } from './src/screens';
 // import { Fetch, Interval, LifeCycle, Timer } from './src/tabs';
 // import { Cat, Clock } from './src/screens';

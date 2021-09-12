@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper'
 import { useToggleTheme } from '../context'
 import { Alert, View, Text, Image, Switch, FlatList, StyleSheet } from 'react-native';
 import * as D from '../data';
-import Person from '../people/Person';
+import Person from './Person';
 
 const People = () => {
 

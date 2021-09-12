@@ -1,18 +1,18 @@
 import React from 'react';
-import { useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
 import color from 'color';
-import PersonUsingObjectState from '../../people/PersonUsingObjectState';
 import * as D from '../../data'
+import PersonUsingObjectState from '../prac-state/PersonUsingObjectState';
+import { createOrUse } from './createOrUse';
 
-const title = 'Memo';
+const title = 'Cache';
 
-const Memo = () => {
+const Cache = () => {
 
-  const people = useMemo(()=> {
+  const people = createOrUse('people', ()=> {
     return D.makeArray(4).map(D.createRandomPerson)
-  }, [])
+  })
 
   return (
     <View style={[styles.view]}>
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Memo;
+export default Cache;

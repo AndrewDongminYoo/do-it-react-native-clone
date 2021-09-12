@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useLayoutEffect, useEffect, useCallback } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Colors } from 'react-native-paper';
-import * as D from '../../data'
+import * as D from '../../../data'
 
 export type CountryProps = {
   country: D.ICountry
