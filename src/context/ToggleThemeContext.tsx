@@ -30,5 +30,6 @@ export const ToggleThemeProvider: FC<ToggleThemeContextProps> = ({
 }
 
 export const useToggleTheme = () => {
-  const value = useContext(ToggleThemeContext)
+  const { toggleTheme } = useContext(ToggleThemeContext)
+  return toggleTheme
 }
