@@ -8,6 +8,7 @@ import { Cache, Fibo, Memo } from './src/prac';
 import { Fetch, Interval, LifeCycle, Timer } from './src/tabs';
 import { Colors } from 'react-native-paper';
 import color from 'color';
+import MainNavigator from './src/navigator/MainNavigator'
 import { PersonUsingObjectState, PersonUsingValueState, PersonUsingPassingState } from './src/screens';
 import * as D from './src/data'
 
@@ -57,11 +58,12 @@ export default function App() {
     // <>
       <SafeAreaView style={[styles.safeAreaView]}>
         {/* <TopBar setPeople={setPeople}/> */}
-        <View style={styles.topBar}>{buttons}</View>
+        {/* <View style={styles.topBar}>{buttons}</View>
         {select === 'Fetch' && <Fetch />}
         {select === 'Interval' && <Interval />}
         {select === 'LifeCycle' && <LifeCycle />}
-        {select === 'Timer' && <Timer />}
+        {select === 'Timer' && <Timer />} */}
+        <MainNavigator/>
         {/* <ScrollView horizontal
           contentContainerStyle={[styles.contentContainerStyle]}
         > */}
