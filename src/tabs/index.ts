@@ -3,4 +3,5 @@ import Fetch from './Fetch';
 import Interval from './Interval';
 import LifeCycle from './LifeCycle';
 import Timer from './Timer';
-export { Country, Fetch, Interval, LifeCycle, Timer }
+import Home from './Home'
+export { Country, Fetch, Interval, LifeCycle, Timer, Home }

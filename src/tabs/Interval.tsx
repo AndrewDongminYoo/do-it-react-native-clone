@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState, useLayoutEffect, useEffect, useCallback } from 'react';
+import { useInterval, useToggle } from '../hooks';
+import { useState, useCallback } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Colors } from 'react-native-paper';
 import Avatar from '../components/Avatar'
@@ -12,23 +13,14 @@ type IdAndAvatar = Pick<D.IPerson, 'id' | 'avatar'>
 const Interval = () => {
 
   const [avatars, setAvatars] = useState<IdAndAvatar[]>([])
-  const [start, setStart] = useState<Boolean>(true)
-
-  const toggleStart = useCallback(()=>setStart((start)=>!start), [])
+  const [start, toggleStart] = useToggle(true)
   const clearAvatar = useCallback(()=> setAvatars((avatars)=>[]),[])
 
-  useEffect(()=> {
-    const id = setInterval(()=>{
-      if (start) {
-        setAvatars((avatars)=>[
-          ...avatars,
-          {id: D.randomId(),
-          avatar: D.randomAvatarUrl()}
-        ])
-      }
-    }, 1000)
-    return ()=>clearInterval(id)
-  }, [start])
+  useInterval(()=> start &&
+    setAvatars((avatars) => [
+      ...avatars,
+      {id: D.randomId(), avatar: D.randomAvatarUrl()}
+  ]), 1000, [start])
 
   return (
     <View style={[styles.view]}>
@@ -63,7 +55,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: '600'
+    fontWeight: '600',
+    fontFamily: 'Roboto-Black'
   },
   topBar: {
     padding: 5,

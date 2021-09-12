@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 
 const useAssetFonts = () => {
-  const [fonts] = useFonts({
+  const [fonts, fontError] = useFonts({
     "MajorMonoDisplay": require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     "Roboto-Regular": require('../../assets/fonts/Roboto-Regular.ttf'),
     "Roboto-Medium": require('../../assets/fonts/Roboto-Medium.ttf'),

@@ -1,15 +1,25 @@
 import React from 'react';
-import { useLayoutEffect, useEffect, useCallback } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Colors } from 'react-native-paper';
+import { useLayout } from '../hooks'
 
 const title = 'LifeCycle';
 
 const LifeCycle = () => {
+
+  const [layout, setLayout] = useLayout()
+  const { width, height } = layout
+
   return (
-    <View style={[styles.view]}>
+    <View onLayout={setLayout} style={[styles.view]}>
       <Text style={[styles.text]}>
         {title}
+      </Text>
+      <Text style={[styles.text]}>
+        width: {width}
+      </Text>
+      <Text style={[styles.text]}>
+        height: {height}
       </Text>
     </View>
   )
@@ -23,7 +33,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: Colors.white
+    color: Colors.white,
+    fontFamily: 'Roboto-Regular'
   }
 })
 

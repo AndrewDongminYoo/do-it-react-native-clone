@@ -1,8 +1,9 @@
 import React from 'react';
-import { useState, useLayoutEffect, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
 import * as D from '../data'
+import useAsync from '../hooks/useAsync';
 import Country from './Country'
 
 const title = 'Fetch';
@@ -10,10 +11,12 @@ const title = 'Fetch';
 const Fetch = () => {
 
   const [countries, setCountries] = useState<D.ICountry[]>([])
-  const [error, setError] = useState<Error | null>(null)
-  useEffect(()=>{
-    D.getCountries().then(setCountries).catch(setError)
-  },[])
+  const [error, resetError] = useAsync(async ()=>{
+    setCountries([])
+    resetError()
+    const countries = await D.getCountries()
+    setCountries(countries)
+  })
 
   return (
     <View style={[styles.view]}>
@@ -41,7 +44,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: '600'
+    fontWeight: '600',
+    fontFamily: 'Roboto-Bold'
   },
   separator: {
     borderBottomColor: Colors.blue50,
