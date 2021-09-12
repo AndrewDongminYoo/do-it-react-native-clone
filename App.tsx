@@ -7,17 +7,17 @@ import { Colors } from 'react-native-paper';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { DefaultTheme, DarkTheme } from 'react-native-paper';
+import { ToggleThemeProvider } from './src/context/ToggleThemeContext';
 import color from 'color';
 
 import useAssetFonts from './src/hooks/useAssetFonts'
 import MainNavigator from './src/navigator/MainNavigator'
-import { TopBar, BottomBar, Content, Fab } from './src/screens';
-import { Fetch, Interval, LifeCycle, Timer } from './src/tabs';
-import { Cat, Clock } from './src/screens';
-import { Cache, Fibo, Memo } from './src/prac';
-import { PersonUsingObjectState, PersonUsingValueState, PersonUsingPassingState } from './src/screens';
-import * as D from './src/data'
-import { ToggleThemeProvider } from './src/context/ToggleThemeContext';
+// import { TopBar, BottomBar, Content, Fab } from './src/screens';
+// import { Fetch, Interval, LifeCycle, Timer } from './src/tabs';
+// import { Cat, Clock } from './src/screens';
+// import { Cache, Fibo, Memo } from './src/element/prac';
+// import { PersonUsingObjectState, PersonUsingValueState, PersonUsingPassingState } from './src/screens';
+// import * as D from './src/data'
 
 
 // const { width } = Dimensions.get('window')

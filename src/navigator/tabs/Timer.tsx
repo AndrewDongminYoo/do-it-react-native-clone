@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, ActivityIndicator, Button } from 'react-native';
 import { Colors } from 'react-native-paper';
-import { useTimeout, useToggle } from '../hooks'
+import { useTimeout, useToggle } from '../../hooks'
 
 const title = 'Timer';
 

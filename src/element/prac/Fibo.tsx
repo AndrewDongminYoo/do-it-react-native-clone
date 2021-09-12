@@ -2,7 +2,7 @@ import React from 'react';
 import { useMemo } from 'react'
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
-import * as D from '../data'
+import * as D from '../../data'
 import { fibonacci } from './fibonacci'
 
 const title = 'Fibo';

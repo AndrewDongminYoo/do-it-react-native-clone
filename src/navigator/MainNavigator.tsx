@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
 import { Colors , BottomNavigation } from 'react-native-paper';
-import { Fetch, Interval, LifeCycle, Timer, Home } from '../tabs'
+import { Fetch, Interval, LifeCycle, Timer, Home } from './tabs'
 
 const title = 'MainNavigator';
 

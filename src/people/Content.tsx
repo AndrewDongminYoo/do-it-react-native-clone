@@ -2,7 +2,7 @@ import color from 'color';
 import React from 'react';
 import { StyleSheet, View, FlatList, ScrollView } from 'react-native';
 import { Colors } from 'react-native-paper';
-import Person from '../copy/Person';
+import Person from './Person';
 import * as D from '../data'
 
 

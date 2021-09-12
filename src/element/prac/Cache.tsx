@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
 import color from 'color';
-import * as D from '../data'
-import PersonUsingObjectState from './PersonUsingObjectState';
+import * as D from '../../data'
+import PersonUsingObjectState from '../../people/PersonUsingObjectState';
 import { createOrUse } from './createOrUse';
 
 const title = 'Cache';

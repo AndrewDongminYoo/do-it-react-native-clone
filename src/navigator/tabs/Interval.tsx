@@ -1,10 +1,10 @@
 import React from 'react';
-import { useInterval, useToggle } from '../hooks';
+import { useInterval, useToggle } from '../../hooks';
 import { useState, useCallback } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Colors } from 'react-native-paper';
-import Avatar from '../components/Avatar'
-import * as D from '../data'
+import Avatar from '../../components/Avatar'
+import * as D from '../../data'
 
 const title = 'Interval';
 

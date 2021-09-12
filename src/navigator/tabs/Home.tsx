@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, View, Text, Switch } from 'react-native';
 import { Colors, useTheme } from 'react-native-paper';
-import { useToggleTheme } from '../context';
-import * as D from '../data'
-import useAsync from '../hooks/useAsync';
+import { useToggleTheme } from '../../context';
+import * as D from '../../data'
+import useAsync from '../../hooks/useAsync';
 import Country from './Country'
 
 const darkColor = {
@@ -40,7 +40,6 @@ const Home = () => {
   const theme = useTheme()
   const toggleTheme = useToggleTheme()
   const { dark, fonts, colors } = theme
-  console.log(theme)
 
   return (
     <View style={[styles.view, {backgroundColor: colors.background}]}>

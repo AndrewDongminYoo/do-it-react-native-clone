@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Colors } from 'react-native-paper';
-import * as D from '../data'
-import useAsync from '../hooks/useAsync';
+import * as D from '../../data'
+import useAsync from '../../hooks/useAsync';
 import Country from './Country'
 
 const title = 'Fetch';
