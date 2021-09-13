@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Colors } from 'react-native-paper';
 
-const title = 'CopyMe';
+const title = 'Input';
 
-const CopyMe = () => {
+const Input = () => {
   return (
     <View style={[styles.view]}>
       <Text style={[styles.text]}>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CopyMe;
+export default Input;
