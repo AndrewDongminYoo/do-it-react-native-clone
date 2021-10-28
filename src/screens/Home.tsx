@@ -1,10 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
-import { StyleSheet, View, Text, Switch } from 'react-native';
-import { Colors, useTheme } from 'react-native-paper';
+import { useState, useCallback, useRef } from 'react';
+import { StyleSheet, View, Text, Switch, FlatList } from 'react-native';
+import { useTheme } from 'react-native-paper';
+import Person from './Person';
 import { useToggleTheme } from '../context';
 import * as D from '../data'
-import useAsync from '../hooks/useAsync';
 
 const darkColor = {
   accent: "#03dac6",
@@ -36,31 +36,40 @@ const defaultColor = {
 
 const Home = () => {
 
-  const theme = useTheme()
+  const [people, setPeople] = useState<D.IPerson[]>([D.createRandomPerson()])
+  const { colors, dark } = useTheme()
   const toggleTheme = useToggleTheme()
-  const { dark, fonts, colors } = theme
+  const create = useCallback(()=>{
+    setPeople((people) => [...people, D.createRandomPerson()])
+  }, [])
+  const remove = useCallback(()=>{
+    setPeople((people) => [])
+  }, [])
+  const flatListRef = useRef<FlatList | null>(null)
+  const onContentSizeChange = useCallback(
+    ()=> flatListRef.current?.scrollToEnd(),
+    [flatListRef.current]
+  )
 
   return (
-    <View style={[styles.view, {backgroundColor: colors.background}]}>
-      <View style={[styles.bar, {backgroundColor: colors.primary}]}>
-        <Text style={[styles.text, {color:colors.text}, fonts.medium]}>
-          Top Bar
+    <View style={[styles.view, {backgroundColor: colors.surface}]}>
+      <View style={[styles.topBar, {backgroundColor: colors.accent}]}>
+        <Text style={styles.text} onPress={create}>
+          create
         </Text>
+        <Text style={styles.text} onPress={remove}>
+          remove
+        </Text>
+        <View style={{flex:1}}/>
+        <Switch value={dark} onChange={toggleTheme}/>
       </View>
-      <View style={[styles.content]}>
-        <Text style={[styles.text, {color:colors.text}, fonts.regular]}>
-          Hello Theme!!
-        </Text>
-        <Switch value={dark} onValueChange={toggleTheme}/>
-        <Text style={[styles.text, {color:colors.text}, fonts.regular]}>
-          🌗
-        </Text>
-      </View>
-      <View style={[styles.bar, {backgroundColor: colors.accent}]}>
-        <Text style={[styles.text, {color:colors.text}, fonts.light]}>
-          Bottom Bar
-        </Text>
-      </View>
+      <FlatList
+        ref={flatListRef}
+        data={people}
+        renderItem={({item})=><Person person={item} />}
+        keyExtractor={(person) => person.id}
+        onContentSizeChange={onContentSizeChange}
+      />
     </View>
   )
 }
@@ -69,8 +78,8 @@ const styles = StyleSheet.create({
   view: {
     flex: 1
   },
-  bar: {
-    height: 50,
+  topBar: {
+    height: 80,
     flexDirection: 'row',
     padding: 5,
     alignItems: 'center'
@@ -81,6 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
+    marginRight: 10,
     fontSize: 20,
     textAlign: 'center',
     fontFamily: 'Roboto-Bold'
@@ -88,3 +98,4 @@ const styles = StyleSheet.create({
 })
 
 export default Home;
+
